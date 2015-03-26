@@ -10,6 +10,10 @@
 <script src="js/create.js"></script>
 
 <body>
+	
+	<input type="text" id="battleInput">
+	<button type="submit" class="submit">Submit</button>
+
 	<div id="login-container">
 		<?php include_once( 'views/login.php'); ?>
 	</div>
