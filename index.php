@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="style.css">
 <link rel = 'stylesheet' href = 'views/temp/css/animate.css'>
-
+<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/login.js"></script>
@@ -14,6 +14,9 @@
 	
 
 	<style>
+		*{
+			font-family: 'Orbitron', sans-serif;
+		}
 		body{
 			background: url('http://4.bp.blogspot.com/-Y6bxhFuK13s/UZx6gVxe7PI/AAAAAAAAAHo/nfC_u2c3dv8/s640/EndCredits2560x1600-16bit.jpg');
 			
@@ -30,7 +33,7 @@
 		}
 
 		.player1{
-			border:1px solid rgb(17, 45, 46);;
+			border:1px solid rgb(17, 45, 46);
 
 		}
 
@@ -67,6 +70,27 @@
 			text-align: center;
 		}
 
+		.winner{
+			background:#626262;
+			border: 10px dashed #17E021;
+			display:inline-block;
+		}
+
+		.winner h1{
+			text-align: center;
+			height:200px;
+			width:100%;
+			vertical-align: center;
+			text-shadow: 2px 2px black;
+			position: relative;
+  			top: 50%;
+		    transform: translateY(30%);
+
+  			
+		}
+
+
+
 	</style>
 
 
@@ -83,6 +107,9 @@
 	</div>
 	<div id="login-container">
 		<?php include_once( 'views/temp/page3.php'); ?>
+	</div>
+	<div id="login-container">
+		<?php include_once( 'views/temp/winner.php'); ?>
 	</div>
 	
 </body>
