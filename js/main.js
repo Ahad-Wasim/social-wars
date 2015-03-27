@@ -14,6 +14,7 @@ var base_flickr_url = server+services+api_key+format+nojsoncallback;
 
 var photoArray = [];
 var totalPhotos = null;
+var totalPages = null;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -26,6 +27,7 @@ var createPhotoObject = function (photoArray) {
 	var url = 'https://farm' + selectedPhoto.farm + '.staticflickr.com/' + selectedPhoto.server + '/' + selectedPhoto.id + '_' + selectedPhoto.secret + '_m.jpg'
 	photoObject.url = url;	
 	photoObject.total = totalPhotos;
+	photoObject.pages = totalPages;
 	return photoObject;
 }
 
@@ -50,6 +52,7 @@ function getFlickr (){ // parameter inside function will be a battleInput
 		//define our success handler
 		success: function(response){
 			totalPhotos = response.photos.total;
+			totalPages = response.photos.pages;
 			//set our photos variable to the appropriate information from the json. 
 			photoArray = response.photos.photo;
 			//fire function to select random photo
