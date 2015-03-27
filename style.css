@@ -2,21 +2,26 @@
     font-family: monospace;
     font-size: 18px;
     color: #2BD5F0;
-}    
+}   
+
+.battlepg_border {
+    border: 3px solid #2BD5F0;
+    position: relative; 
+    top: 150px;
+}
 .top_container {
-    border: 1px solid #8C8C8C;
+/*    border: 1px solid #8C8C8C;*/
     height: 100px;
     width: 600px;
     margin: 0 auto;
-    margin-top: 8%;
+    margin-top: 5%;
 
 }
 
-.playersrdy {
-    position: relative;
-    float: right;
-}
 
+#word_button {
+    font-color: black;
+}
 #new_word {
     position: relative;
 }
@@ -28,7 +33,7 @@
 }
 .bottom_container {
     width: 600px;
-    border: 1px solid red;
+/*    border: 1px solid red;*/
     margin: 0 auto;
     margin-top: 3%;
     margin-bottom: 3%;
@@ -53,4 +58,14 @@ input {
 }
 .align-right{
     text-align: right;
+}
+
+.playersrdy {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 20px;
+}
+#playersReady {
+    font-color: red !important;
 }

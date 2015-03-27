@@ -1,14 +1,20 @@
-<div class="container">
+<div class="container battlepg_border">
     <div class="top_container">
         <form>
+            <div class="row">
+                <div class="col-xs-5 align-right"> 
             <label for="status"> New Word: </label>
+                </div>
+            <div class="col-xs-7 align-left">
             <input type="text" id="new_word">
-            <button id="word_botton" type="submit" value="submit">Submit</button>
-            <div class="playersrdy">PLAYER 1/2</div>
-
+            <button class="btn btn-default" id="word_button" type="submit" value="submit" >Submit</button>
+            </div>
+            </div>
+            <div class="playersrdy" id="playersReady">PLAYER 1/2</div>
+        </form>
     </div>
     <div class="mid_container">
-        <div class="" style="background-color:red">
+        <div class="">
             <div class="row">
                 <div class="col-xs-5 align-right">
                     <label for="health"> Health: </label>
@@ -42,12 +48,11 @@
                 </div>
             </div>
         </div>
-
-        <div class="bottom_container">
-            <div id="total_stat">Stat Point : #####</div>
-            <div id="army_size">Army Size : #####</div>
-            <button class="btn btn-default">Random</button>
-            <button class="btn btn-default">Ready</button>
-        </div>
-        </form>
     </div>
+    <div class="bottom_container">
+        <div id="total_stat">Stat Point : #####</div>
+        <div id="army_size">Army Size : #####</div></br>
+        <button class="btn btn-default">Random</button>
+        <button class="btn btn-default">Ready</button>
+    </div>
+</div>
