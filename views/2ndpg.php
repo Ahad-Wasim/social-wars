@@ -14,7 +14,7 @@
                     <label for="health"> Health: </label>
                 </div>
                 <div class="col-xs-7 align-left">
-                    <input type="text" name="health"> </br>
+                    <input type="text" name="health" id="health_input"> </br>
                 </div>
             </div>
             <div class="row">
@@ -22,7 +22,7 @@
                     <label for="status"> Speed: </label>
                 </div>
                 <div class="col-xs-7 align-left">
-                    <input type="text">
+                    <input type="text" name="speed" id="speed_input">
                 </div>
             </div>
             <div class="row">
@@ -30,7 +30,7 @@
                     <label for="status"> Damage: </label>
                 </div>
                 <div class="col-xs-7 align-left">
-                    <input type="text"> </br>
+                    <input type="text" name="damage" id="damage_input"> </br>
                 </div>
             </div>
             <div class="row">
@@ -38,7 +38,7 @@
                     <label for="status"> Army Size: </label>
                 </div>
                 <div class="col-xs-7 align-left">
-                    <input type="text"> </br>
+                    <input type="text" name="army" id="army_input"> </br>
                 </div>
             </div>
         </div>
