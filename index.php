@@ -9,16 +9,7 @@
 <script src="js/create.js"></script>
 <script src="js/getRequest.js"></script>
 
-
-    
 <body>
-	
-<!--
-	<input type="text" id="battleInput">
-	<button type="submit" class="submit">Submit</button> delete 
--->
-
-
 	<div id="login-container">
 		<?php include_once( 'views/login.php'); ?>
 	</div>
@@ -28,6 +19,7 @@
 	<div id="create-avatar-container">
 		<?php include_once( 'views/create-avatar.php'); ?>
 	</div>
+
     <div id="">
 		<?php include_once( 'views/2ndpg.php'); ?>
 	</div>
