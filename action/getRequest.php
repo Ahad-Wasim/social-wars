@@ -31,17 +31,12 @@ function getTweets($response){
      return $tweets;
 }
 //output array
-$r = array(
-    'success'=>true,
-    'data'=>null,
-    'message'=>''
-);
 
-if(!$response){
+if (!$response){
     $r['success'] = false;
     $r['message'] = "Response could not be decoded";
-}else{
-    $r['data'] = array(
+} else {
+    $r = array(
         'tweets'=>getTweets($response),
     );
 }

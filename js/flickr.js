@@ -28,10 +28,10 @@ var createPhotoObject = function (photoArray) {
     return photoObject;
 }
 
-function getFlickr (){ 
+function getFlickr (str){ 
 	var defer = Q.defer();
 	// parameter inside function will be a battleInput
-    var battleInput = "cat"; //this will change to input reconstruct
+    var battleInput = str; //this will change to input reconstruct
     //make a variable, search_method_parameter, that stores which method we are going to use for searching.  The key should be 'method', and the value should be the 'flickr.photos.search'.  Make sure to put a & before the key
     var search_method_parameter = "&method=flickr.photos.search"
     //make a variable, search_text_parameter, that defines what text we are going to use in our search.  The key will be text, and the value will be the search_val variable we defined above.  Make sure to put a & before the key
