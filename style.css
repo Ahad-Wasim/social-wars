@@ -1,23 +1,23 @@
-* {
-    font-family: monospace;
-    font-size: 18px;
-    color: #2BD5F0;
-}   
 
 .battlepg_border {
     border: 3px solid #2BD5F0;
     position: relative; 
     top: 150px;
 }
+
 .top_container {
 /*    border: 1px solid #8C8C8C;*/
     height: 100px;
     width: 600px;
     margin: 0 auto;
-    margin-top: 5%;
-
+    margin-top: 8%;
 }
 
+.playersrdy {
+    position: relative;
+    float: right;
+
+}
 
 #word_button {
     font-color: black;
@@ -44,6 +44,9 @@ body {
     background-image: url(images/tron_background.jpg.jpg);
     background-size: contain;
     color: #ffffff;
+    font-family: monospace;
+    font-size: 18px;
+    color: #2BD5F0;
 }
 
 input {
@@ -68,4 +71,13 @@ input {
 }
 #playersReady {
     font-color: red !important;
+}
+
+.mid_container {
+      width: 600px;
+      height: 150px;
+}
+.bottom_container {
+    width: 600px;
+    border: 1px solid black;
 }
