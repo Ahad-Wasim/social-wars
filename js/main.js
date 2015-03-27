@@ -13,23 +13,24 @@ var nojsoncallback="&nojsoncallback=1";
 var base_flickr_url = server+services+api_key+format+nojsoncallback;
 
 var photoArray = [];
-var photoObject = {};
 var totalPhotos = null;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-var whittleItDown = function (photoArray) {
+var createPhotoObject = function (photoArray) {
+	var photoObject = {};
 	var randomIndex = getRandomInt(1,9);
 	var selectedPhoto = photoArray[randomIndex];
 	var url = 'https://farm' + selectedPhoto.farm + '.staticflickr.com/' + selectedPhoto.server + '/' + selectedPhoto.id + '_' + selectedPhoto.secret + '_m.jpg'
 	photoObject.url = url;	
 	photoObject.total = totalPhotos;
+	return photoObject;
 }
 
 
-function getFlickr (){ // parameter i
+function getFlickr (){ // parameter inside function will be a battleInput
 	var battleInput = "cat"; //this will change to input reconstruct
     //make a variable, search_method_parameter, that stores which method we are going to use for searching.  The key should be 'method', and the value should be the 'flickr.photos.search'.  Make sure to put a & before the key
     var search_method_parameter = "&method=flickr.photos.search"
@@ -52,16 +53,21 @@ function getFlickr (){ // parameter i
 			//set our photos variable to the appropriate information from the json. 
 			photoArray = response.photos.photo;
 			//fire function to select random photo
-			whittleItDown(photoArray);
-			console.log(photoObject);
+			console.log(createPhotoObject(photoArray));
+			//console.log(photoObject);
 			
 		},	//end our success handler
 		//define our error handler.  Put the received data into the "response" variable.  
 		error: function(response){
 			//console log out the response variable, and indicate we had an error
-			console.error("error!");
+			console.error("Error, something went wrong with the photo avatar");
 		}//end our error handler
 	}); //end our ajax call
 
 
 }; //end our getFlickr function
+
+
+
+
+
