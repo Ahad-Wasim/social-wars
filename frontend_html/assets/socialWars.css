@@ -5,15 +5,8 @@
 #headerContainer{
 	margin-top: -20px;
 }
-#headerImg{
-	height: 70px;
-	width: auto;
-	margin-top: -15px;
-}
 
-#headerH3{
-	margin-top: -5px;
-}
+
 .form_inline_diy{
 	opacity: 100%;
 }
@@ -21,6 +14,11 @@
 .loginPageSolo{
 	width: 50vw;
 }
+
+
+
+
+
 
 #nav-wrapper.affix {
     top: 0;
@@ -55,4 +53,17 @@
   .mediaNoShow{
     display: none !important;
   }
+}
+
+
+
+
+
+
+
+/* testing border  */
+
+.borderTesting {
+	border: 1px solid red;
+	
 }

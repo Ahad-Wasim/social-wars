@@ -36,6 +36,9 @@
 							<li>
 								<a href="#">Contact</a>
 							</li>
+							<li>
+								<a href="./prebattle.php">Pre Battle Setting traits/status </a>
+							</li>
 						</ul>
 					</div>
 				</div><!-- navbar-inner -->

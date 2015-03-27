@@ -29,6 +29,8 @@
 	#search-form {
 //		width: 40vw;
 	}
+	
+
 </style>
 
 </head>
@@ -90,6 +92,11 @@ We've even started you off with some example code to the left - hit CTRL+Enter t
 where you can do rapid PHP prototyping without the need to build your own LAMP stack or bother with saving files and the like.
 It allows you to slap together a quick block of code and render it straight in your browser, and even proceed to send that data over to a friend or colleague for collaboration.
 
+
+
+
+
+<?php include('prebattle.php'); ?>
 Usage
 
 Just type your PHP code in the left hand side there, and when you're ready to run it, just hit CTRL+Enter - that's it. It'll render and the output will be shown over here, errors and all. 
