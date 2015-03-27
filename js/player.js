@@ -1,22 +1,38 @@
 var playerID = 0;
-var players = [];					// pushing the players inside this empty array
-																 // class is player 
-function Player(obj) {        // every player is going to be a new player
-    this.health = null;											 // health these are the properties of the class
-    this.strength = null;  										 // speed etc.
-    this.speed = null;				
-    this.army = createArmy(flickrPhotoCount, hashtagCount);
-    this.playerID = playerID++;
-    
+var players = [];                   // pushing the players inside this empty array
+                                                                 // class is player 
+function Player(obj) {  
+    var self = this;
+     // every player is going to be a new player
+    self.health = 'sdfsdf';                                          // health these are the properties of the class
+    self.strength = 'sdfsdf';                                        // speed etc.
+    self.speed = 'sdfsdf';              
+    // this.army = createArmy(flickrPhotoCount, hashtagCount);
+    self.playerID = playerID++;
+    console.log(obj);
     for (var key in obj) {
-        this[key] = obj[key];
-    }    
+        console.log(key);
+        self[key] = obj[key];
+    }   
+
 }
 
-function createPlayer(obj) {									// were grabbing teh certain value from the words
-    Promise.resolve( getTwitter() ).then(function(obj) {			// if the getTwitter is loaded
-        Promise.resolve( getFlickr(obj) ).then(function(obj) {	// if the getFlickr is loaded
-            players.push( new Player(obj) );	// create the object when both of the top stuff are loaded
+
+function createPlayer(obj) {                                    // were grabbing teh certain value from the words
+    // Promise.resolve( getFlickr() ).then(function(obj) {          // if the getTwitter is loaded
+        // Promise.resolve( getFlickr(obj) ).then(function(obj) {   // if the getFlickr is loaded
+        getFlickr().then(function(response) {
+            console.log('response =', response);
+            var o = {
+                url: 'sdasdad',
+                count: 'asdasdasd',
+            }
+            
+            players.push( new Player(response) );   // create the object when both of the top stuff are loaded
         });
-    });
+        // });
+    // });
 }
+
+createPlayer();
+
