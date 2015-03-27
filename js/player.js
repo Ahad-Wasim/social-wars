@@ -14,9 +14,15 @@ function Player(obj) {
         console.log(key);
         self[key] = obj[key];
     }   
-
 }
 
+Player.prototype.set = function(prop, val) {
+    this['prop'] = val;
+}
+
+Player.prototype.get = function(prop) {
+    return this['prop'];
+}
 
 function createPlayer(obj) {                                    // were grabbing teh certain value from the words
     // Promise.resolve( getFlickr() ).then(function(obj) {          // if the getTwitter is loaded
