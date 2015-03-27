@@ -3,7 +3,7 @@
         <form>
             <label for="status"> New Word: </label>
             <input type="text" id="new_word">
-            <button id="word_botton" type="submit" value="submit">Submit</button>
+            <button id="word_button" type="submit" value="submit">Submit</button>
             <div class="playersrdy">PLAYER 1/2</div>
 
     </div>

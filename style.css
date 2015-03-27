@@ -1,20 +1,17 @@
-* {
-    font-family: monospace;
-    font-size: 18px;
-    color: #2BD5F0;
-}    
 .top_container {
     border: 1px solid #8C8C8C;
     height: 100px;
     width: 600px;
+
     margin: 0 auto;
     margin-top: 8%;
-
 }
 
 .playersrdy {
     position: relative;
     float: right;
+    border: 1px solid red;
+
 }
 
 #new_word {
@@ -39,6 +36,9 @@ body {
     background-image: url(images/tron_background.jpg.jpg);
     background-size: contain;
     color: #ffffff;
+    font-family: monospace;
+    font-size: 18px;
+    color: #2BD5F0;
 }
 
 input {
@@ -53,4 +53,15 @@ input {
 }
 .align-right{
     text-align: right;
+
+    
+}
+.mid_container {
+      width: 600px;
+      height: 150px;
+      border: 1px dashed #800;
+}
+.bottom_container {
+    width: 600px;
+    border: 1px solid black;
 }
