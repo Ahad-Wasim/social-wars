@@ -4,9 +4,9 @@ var players = [];                   // pushing the players inside this empty arr
 function Player(obj) {  
     var self = this;
      // every player is going to be a new player
-    self.health = 'sdfsdf';                                          // health these are the properties of the class
-    self.strength = 'sdfsdf';                                        // speed etc.
-    self.speed = 'sdfsdf';              
+    self.health = '';                                          // health these are the properties of the class
+    self.strength = '';                                        // speed etc.
+    self.speed = '';              
     // this.army = createArmy(flickrPhotoCount, hashtagCount);
     self.playerID = playerID++;
     console.log(obj);

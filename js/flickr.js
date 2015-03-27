@@ -24,7 +24,7 @@ var createPhotoObject = function (photoArray) {
     var selectedPhoto = photoArray[randomIndex];
     var url = 'https://farm' + selectedPhoto.farm + '.staticflickr.com/' + selectedPhoto.server + '/' + selectedPhoto.id + '_' + selectedPhoto.secret + '_m.jpg'
     photoObject.url = url;  
-    photoObject.total = totalPhotos;
+    photoObject.totalPhotoCount = totalPhotos;
     return photoObject;
 }
 
@@ -50,6 +50,7 @@ function getFlickr (str){
         //define our success handler
         success: function(response){
             totalPhotos = response.photos.total;
+            totolPages = response.photos.pages;
 			//set our photos variable to the appropriate information from the json. 
 			photoArray = response.photos.photo;
 			//fire function to select random photo
