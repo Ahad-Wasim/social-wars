@@ -9,6 +9,18 @@
 <script src="js/battle.js"></script>
 <script src="js/create.js"></script>
 
+
+<style> 
+
+.loginPageSolo{
+	width: 40vw;
+}
+
+.form_fight_panel{
+	border: 1px solid red;
+	background: lightgrey;
+}
+</style> 
 <body>
 	
 	<input type="text" id="battleInput">
@@ -19,6 +31,9 @@
 	</div>
 	<div id="battle-container">
 		<?php include_once( 'views/battle.php'); ?>
+	</div>
+	<div id="status-container">
+		<?php include_once( 'views/battleStatus.php'); ?>
 	</div>
 	<div id="create-avatar-container">
 		<?php include_once( 'views/create-avatar.php'); ?>
