@@ -10,6 +10,7 @@
 <script src="js/getRequest.js"></script>
 
 <body>
+
 	<div id="login-container">
 		<?php include_once( 'views/login.php'); ?>
 	</div>
@@ -19,10 +20,10 @@
 	<div id="create-avatar-container">
 		<?php include_once( 'views/create-avatar.php'); ?>
 	</div>
-
     <div id="">
 		<?php include_once( 'views/2ndpg.php'); ?>
 	</div>
+
 </body>
 
 </html>
