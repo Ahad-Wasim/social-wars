@@ -1,0 +1,69 @@
+.jumbotron{
+	height: 100px;
+}
+
+#headerContainer{
+	margin-top: -20px;
+}
+
+
+.form_inline_diy{
+	opacity: 100%;
+}
+
+.loginPageSolo{
+	width: 50vw;
+}
+
+
+
+
+
+
+#nav-wrapper.affix {
+    top: 0;
+    width: 100%
+}
+
+
+.vertical_Center{
+	height: 7vh;
+	transform: translateY(90%);
+}
+
+
+#nav > .navbar-inner {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+}
+
+.todo-modify{
+	padding: 0;
+	text-align: right;
+	
+}
+
+
+
+@media screen and (max-width: 801px){
+  .mediaNoShow{
+    display: none !important;
+  }
+}
+
+
+
+
+
+
+
+/* testing border  */
+
+.borderTesting {
+	border: 1px solid red;
+	
+}
