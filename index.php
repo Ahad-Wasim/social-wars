@@ -8,6 +8,7 @@
 <script src="js/login.js"></script>
 <script src="js/battle.js"></script>
 <script src="js/create.js"></script>
+<script src="js/getRequest.js"></script>
 
 <body>
 	
