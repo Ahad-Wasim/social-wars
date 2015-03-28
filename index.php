@@ -7,7 +7,11 @@
 <script src="js/login.js"></script>
 <script src="js/battle.js"></script>
 <script src="js/create.js"></script>
+<script src="js/q.js"></script>
 <script src="js/getRequest.js"></script>
+<script src="js/flickr.js"></script>
+<script src="js/player.js"></script>
+<!-- Twitter API -->
 
 <body>
 
