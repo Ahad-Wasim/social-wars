@@ -7,7 +7,7 @@
                 </div>
             <div class="col-xs-7 align-left">
             <input type="text" id="new_word">
-            <button class="btn btn-default" id="word_button" type="submit" value="submit" >Submit</button>
+            <button class="btn btn-default" id="word_button" type="button">Submit</button>
             </div>
             </div>
             <div class="playersrdy" id="playersReady">PLAYER 1/2</div>

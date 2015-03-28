@@ -1,5 +1,6 @@
 
 function getTwitter(string) {
+
     var key = 'lAy8keqohZIImu0Et0g3pe5il';
     var secret = 'hbM8eF6EdJh52gScC29skbIMQp2xEwfdtBd3zZkARHVBXShnw8';
     var token = '62672830-edmVnLsbSJ9WZ95QDnOdqqLBaZked5byfP1MpPXoO';
@@ -8,8 +9,10 @@ function getTwitter(string) {
     var searchValue = string;
 
     var searchObj = {
-        value: searchValue  
+        value: string  
     };
+
+    console.log('Search value = ' + searchObj.value)
 
     var defer = Q.defer();
 

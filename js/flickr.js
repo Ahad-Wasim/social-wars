@@ -51,6 +51,8 @@ function getFlickr (str){
         success: function(response){
             totalPhotos = response.photos.total;
             totolPages = response.photos.pages;
+
+            console.log('success', response);
 			//set our photos variable to the appropriate information from the json. 
 			photoArray = response.photos.photo;
 			//fire function to select random photo
