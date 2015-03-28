@@ -41,5 +41,4 @@ $errors = [];
         }
             header('Location: ../includes/loginScreen.php');
     }
-
 ?>

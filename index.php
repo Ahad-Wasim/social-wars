@@ -30,5 +30,3 @@
 		<?php include_once( 'views/winner.php'); ?>
 	</div> 
 </body>
-
-</html>

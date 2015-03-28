@@ -1,4 +1,3 @@
-
 var server="https://api.flickr.com/";
 var services="services/rest?";
 var api_key="&api_key=403d5274ed5eb1c0131d74485aaa30dd";
@@ -66,8 +65,3 @@ function getFlickr (){ // parameter inside function will be a battleInput
 
 
 }; //end our getFlickr function
-
-
-
-
-

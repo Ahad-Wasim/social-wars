@@ -31,5 +31,3 @@ if(mysqli_num_rows($result) > 1){
 $output['errors'] = $errors;
 echo json_encode($output);
 ?>
-
-
