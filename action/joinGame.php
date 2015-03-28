@@ -66,7 +66,15 @@ function joinGame()
     
     function createGame(){
         global $CONN;
-//        $createSql = "INSERT INTO game (created, author) VALUES ('$user['created']', '$user['author']')";
+
+        $time = time();
+        $author = $_SESSION['userInfo']['username'];
         
+        $newGame = "INSERT INTO game  (created, author) VALUES ('$time', '$author')";
+        mysqli_query($CONN, $newGame);
+        if(mysqli_affected_rows($CONN)){
+            return true;
+        }
+        return false;
     }
 ?>
