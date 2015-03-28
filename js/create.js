@@ -1,5 +1,5 @@
-function createArmy(flickr, twitter){
-    return Math.floor((flickr + twitter)/2);
+function createArmy(obj) {
+    return Math.floor( (parseInt(obj['totalPhotoCount']) + parseInt(obj['tweets'].length)) / 2 );
 }
 
 function getTotalStats(me, opponent){
