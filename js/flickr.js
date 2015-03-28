@@ -13,6 +13,7 @@ var base_flickr_url = server+services+api_key+format+nojsoncallback;
 
 var photoArray = [];
 var totalPhotos = null;
+var totalPages = null;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -25,11 +26,13 @@ var createPhotoObject = function (photoArray) {
     var url = 'https://farm' + selectedPhoto.farm + '.staticflickr.com/' + selectedPhoto.server + '/' + selectedPhoto.id + '_' + selectedPhoto.secret + '_m.jpg'
     photoObject.url = url;  
     photoObject.totalPhotoCount = totalPhotos;
+    photoObject.totalPageCount = totalPages;
     return photoObject;
 }
 
 function getFlickr (str){ 
 	var defer = Q.defer();
+    //var randomPerPage = ;
 	// parameter inside function will be a battleInput
     var battleInput = str; //this will change to input reconstruct
     //make a variable, search_method_parameter, that stores which method we are going to use for searching.  The key should be 'method', and the value should be the 'flickr.photos.search'.  Make sure to put a & before the key
@@ -37,7 +40,7 @@ function getFlickr (str){
     //make a variable, search_text_parameter, that defines what text we are going to use in our search.  The key will be text, and the value will be the search_val variable we defined above.  Make sure to put a & before the key
     var search_text_parameter = "&text="+battleInput;
     //narrow down the search of the 
-    var pages = "&per_page=9";
+    var pages = "&per_page=" + getRandomInt(9, 300);
     //define a variable, search_url, that concatanates the base_flickr_url variable, the search_method_parameter variable, and the search_text_parameter variable
     var search_url = base_flickr_url+search_method_parameter+search_text_parameter+pages;
    	$.ajax({
@@ -50,7 +53,7 @@ function getFlickr (str){
         //define our success handler
         success: function(response){
             totalPhotos = response.photos.total;
-            totolPages = response.photos.pages;
+            totalPages = response.photos.pages;
 
             console.log('success', response);
 			//set our photos variable to the appropriate information from the json. 

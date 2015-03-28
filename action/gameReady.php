@@ -1,4 +1,5 @@
 <?php
+require_once('../includes/db_link.php');
 $pID = $_SESSION['userInfo']['ID'];
 $output = [];
 $output['success'] = false;

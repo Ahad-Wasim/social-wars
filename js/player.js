@@ -7,7 +7,7 @@ function Player(obj) {
     self.health = '';                                          // health these are the properties of the class
     self.strength = '';                                        // speed etc.
     self.speed = '';              
-    // this.army = createArmy(flickrPhotoCount, hashtagCount);
+    self.army = '';
     self.playerID = playerID++;
     console.log(obj);
     for (var key in obj) {
@@ -23,14 +23,15 @@ Player.prototype.set = function(prop, val) {
 Player.prototype.get = function(prop) {
     return this['prop'];
 }
-function send_players_to_server()
+function send_player_to_server(player)
 {
-    console.log("send players to server called", players);
-    var data  = {players: players};
+    console.log("send army to server called", player.army);
+    var data  = {player: player};
     $.ajax({
-        url: 'action/receive_player_initial_info.php',
+        url: 'action/updatePlayer.php',
         cache: false,
         data: data,
+        dataType: 'json',
         method: 'post',
         success: function(response){
             console.log(response);
@@ -46,11 +47,11 @@ function createPlayer(str) {
                 for (var key in resp1) {
                     resp2[key] = resp1[key];
                 }
-
+                console.log("Create player resonse: " + resp2);
                 players.push( new Player(resp2) );   // create the object when both of the top stuff are loaded
                 defer.resolve(players);
                 //push data to php file
-                send_players_to_server();
+                //send_army_to_server();
             }).catch(function(response) {
                 console.error(response);
                 defer.reject(response);
