@@ -8,12 +8,12 @@ $('document').ready(function(){
     $submitButton.click(function(e){
         var searchString = $('#new_word').val();
 
-        var defer = Q.defer();
-        createPlayer(searchString).then(function() {
-            var army = createArmy(players[0]);
-            players[0].army = createArmy(players[0]);
+        Promise.resolve(createPlayer(searchString)).then(function(player) {
+            console.log('look at me', player);
+            
+            console.log(player['army']);
 
-            $armySize.html(players[0].army);
+            $armySize.html('Army Size : ' + player.army);
         });
         
        

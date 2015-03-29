@@ -1,17 +1,16 @@
 var playerID = 0;
-var players = [];                   // pushing the players inside this empty array
-                                                                 // class is player 
+var players = [];                   
+                                                                
 function Player(obj) {  
     var self = this;
-     // every player is going to be a new player
-    self.health = '';                                          // health these are the properties of the class
-    self.strength = '';                                        // speed etc.
+    
+    self.health = '';                                       
+    self.strength = '';                                      
     self.speed = '';              
-    // this.army = createArmy(flickrPhotoCount, hashtagCount);
+    
     self.playerID = playerID++;
-    console.log(obj);
+
     for (var key in obj) {
-        console.log(key);
         self[key] = obj[key];
     }   
 }
@@ -37,31 +36,31 @@ function send_players_to_server()
         }
     })
 }
-function createPlayer(str) {  
-    var defer = Q.defer();                                  // were grabbing teh certain value from the words
-    // Promise.resolve( getFlickr() ).then(function(obj) {          // if the getTwitter is loaded
-        // Promise.resolve( getFlickr(obj) ).then(function(obj) {   // if the getFlickr is loaded
-        getFlickr(str).then(function(resp1) {
-            getTwitter(str).then(function(resp2) {
-                for (var key in resp1) {
-                    resp2[key] = resp1[key];
-                }
+function createPlayer(str) {     
+    return Promise.resolve(getFlickr(str)).then(function(resp1) {
+        var resp1 = {
+            'url': createPhotoObject(resp1.photos.photo),
+            'totalPhotoCount': parseFloat(resp1.photos.total),
+            'totalPages': parseFloat(resp1.photos.pages),
+        }
 
-                players.push( new Player(resp2) );   // create the object when both of the top stuff are loaded
-                defer.resolve(players);
-                //push data to php file
-                send_players_to_server();
-            }).catch(function(response) {
-                console.error(response);
-                defer.reject(response);
-            })
-        }).catch(function(response) {
-            console.error(response);
-            defer.reject(response);
+        var player = new Player(resp1);
+
+        Promise.resolve(getTwitter(str)).then(function(resp2) {
+            for (var key in resp2) {
+                player[key] = resp2[key];
+            }
+            
+            player.army = createArmy(player);
+
+            players.push( player );  
+            
+            // send_players_to_server();
         });
-        // });
-    // });
-    return defer.promise;
-}
 
+        console.log(player);
 
+        return player;
+    });
+
+};

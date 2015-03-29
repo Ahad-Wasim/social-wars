@@ -19,17 +19,15 @@ function getRandomInt(min, max) {
 }
 
 var createPhotoObject = function (photoArray) {
-    var photoObject = {};
     var randomIndex = getRandomInt(1,9);
     var selectedPhoto = photoArray[randomIndex];
     var url = 'https://farm' + selectedPhoto.farm + '.staticflickr.com/' + selectedPhoto.server + '/' + selectedPhoto.id + '_' + selectedPhoto.secret + '_m.jpg'
-    photoObject.url = url;  
-    photoObject.totalPhotoCount = totalPhotos;
-    return photoObject;
+   
+    return url;
 }
 
 function getFlickr (str){ 
-	var defer = Q.defer();
+
 	// parameter inside function will be a battleInput
     var battleInput = str; //this will change to input reconstruct
     //make a variable, search_method_parameter, that stores which method we are going to use for searching.  The key should be 'method', and the value should be the 'flickr.photos.search'.  Make sure to put a & before the key
@@ -40,7 +38,7 @@ function getFlickr (str){
     var pages = "&per_page=9";
     //define a variable, search_url, that concatanates the base_flickr_url variable, the search_method_parameter variable, and the search_text_parameter variable
     var search_url = base_flickr_url+search_method_parameter+search_text_parameter+pages;
-   	$.ajax({
+   	return $.ajax({
         //set the url key to your search_url variable
         url: search_url,
         //We expect json back from the ajax call, tell ajax to expect it
@@ -49,27 +47,20 @@ function getFlickr (str){
         crossDomain: true,
         //define our success handler
         success: function(response){
-            totalPhotos = response.photos.total;
-            totolPages = response.photos.pages;
-
-            console.log('success', response);
+            // console.log('success', response);
 			//set our photos variable to the appropriate information from the json. 
-			photoArray = response.photos.photo;
+	
 			//fire function to select random photo
-			console.log(createPhotoObject(photoArray));
+			// console.log(createPhotoObject(photoArray));
 
-			defer.resolve(createPhotoObject(photoArray))
+			
         },  //end our success handler
         //define our error handler.  Put the received data into the "response" variable.  
         error: function(response){
             //console log out the response variable, and indicate we had an error
-            console.error("Error, something went wrong with the photo avatar");
-            defer.reject({
-            	message: 'there has been an error'
-            });
+            // console.error("Error, something went wrong with the photo avatar");
 
         }//end our error handler
     });
 
-    return defer.promise;
 }

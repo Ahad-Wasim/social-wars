@@ -12,28 +12,24 @@ function getTwitter(string) {
         value: string  
     };
 
-    console.log('Search value = ' + searchObj.value)
-
-    var defer = Q.defer();
-
-   $.ajax({
+   return $.ajax({
         url: 'action/getRequest.php',
         method: 'POST',
         dataType: 'JSON',
         data: searchObj,
         cache: false,
         success: function(response) {
-            console.log(string);
-            console.log(response);
+            // console.log(string);
+            // console.log(response);
 
-            defer.resolve(response);
+          
         },
         error: function(response) {
-            defer.reject(response);
+           
         }
     }); //end of ajax
 
-    return defer.promise;
+    
 
 }
         
