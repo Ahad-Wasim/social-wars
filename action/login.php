@@ -17,8 +17,8 @@ include('../actions/joinGame.php');
         if(mysqli_num_rows($results)) {
             
             $userinfo = mysqli_fetch_array($results);
-            $_SESSION['userinfo'] = $userinfo;
-            $ID  = $_SESSION['userinfo']['ID'];
+            $_SESSION['userInfo'] = $userinfo;
+            $userID  = $_SESSION['userInfo']['ID'];
             $sql = "UPDATE `users` SET `status`=1 WHERE ID='$ID'";
             mysqli_query($CONN, $sql);
             

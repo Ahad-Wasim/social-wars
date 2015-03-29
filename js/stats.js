@@ -30,10 +30,18 @@ $('document').ready(function(){
             success: function(data){
                 if(data.success){
                     players.push(data.player);
+                    getStatPoints();
                 }else{
                     setTimeout(checkForOp, 2000);
                 }
             }
-        });
-    }
+        });//end ajax
+    } //end checkForOp
+    
+    function getStatPoints(){
+        
+        var stats = getTotalStats(players[0], players[1]);
+        $totalStat.text(stats);
+        
+    } //end getStatPoints
 }); //end of document.ready
