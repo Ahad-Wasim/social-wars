@@ -1,11 +1,13 @@
 function createArmy(obj) {
-    return Math.floor( (parseInt(obj['totalPhotoCount']) + parseInt(obj['tweets'].length)) / 2 );
+    return Math.floor( (parseInt(obj['totalPhotoCount']) + parseInt(obj['totalPageCount'])) / 2 );
 }
 
 function getTotalStats(me, opponent){
-    //var avg = (me[army] + opponent[army]) / 2;
+    console.log("me:",me.army);
+    console.log("opponent",opponent.army);
+    var avg = Math.floor((me.army + opponent.army) / 2);
     
-    var avg = (me+opponent)/2;
+    //var avg = (me+opponent)/2;
     
     var avgStr = avg.toString();
     var loop = avgStr.length-2;
