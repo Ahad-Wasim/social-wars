@@ -1,14 +1,15 @@
-var playerID = 0;
 var players = [];                   
                                                                 
 function Player(obj) {  
+    Player.id = 0;
+
     var self = this;
     
     self.health = '';                                       
     self.strength = '';                                      
     self.speed = '';              
     
-    self.playerID = playerID++;
+    self.playerID = Player.id++;
 
     for (var key in obj) {
         self[key] = obj[key];
@@ -36,31 +37,47 @@ function send_players_to_server()
         }
     })
 }
-function createPlayer(str) {     
-    return Promise.resolve(getFlickr(str)).then(function(resp1) {
-        var resp1 = {
-            'url': createPhotoObject(resp1.photos.photo),
-            'totalPhotoCount': parseFloat(resp1.photos.total),
-            'totalPages': parseFloat(resp1.photos.pages),
+function createPlayer(str) {
+
+    // Outputs new player object with properties from the flickr and twitter api
+    // as well as calculated army
+
+    // After getFlickr finishes, it passes its ouput to the callback flickrResponse     
+    return Promise.resolve(getFlickr(str)).then(function(flickrResponse) {
+
+        // convert flickrResponse to wanted player properties which we pass to new player
+        var passInfo = {
+            'url': createPhotoObject(flickrResponse.photos.photo),
+            'totalPhotoCount': parseFloat(flickrResponse.photos.total),
+            'totalPages': parseFloat(flickrResponse.photos.pages),
         }
 
-        var player = new Player(resp1);
+        var player = new Player(passInfo);
 
-        Promise.resolve(getTwitter(str)).then(function(resp2) {
-            for (var key in resp2) {
-                player[key] = resp2[key];
+        // callback function returns a promise which waits for getTwitter to finish then 
+        // passes its output to the next callback
+        return Promise.resolve(getTwitter(str)).then(function(twitterResponse) {
+            // add twitter to player properties
+            for (var key in twitterResponse) {
+                player[key] = twitterResponse[key];
             }
             
+            // calculate army size as twitter and flickr info set by here
             player.army = createArmy(player);
 
             players.push( player );  
+
+            // pass the new player object to the next callback
+            return player;
             
             // send_players_to_server();
         });
 
-        console.log(player);
-
-        return player;
+    
+    }).then(function(output) {
+        // output is the player object which we return for the on click handler to use
+        // to update the view
+        return output;
     });
 
 };
