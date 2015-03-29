@@ -8,6 +8,7 @@
             <div class="col-xs-7 align-left">
             <input type="text" id="new_word">
             <button class="btn btn-default" id="word_button" type="button">Submit</button>
+            <button class="btn btn-default" id="login_button" type="button">Login</button>
             </div>
             </div>
             <div class="playersrdy" id="playersReady">PLAYER 1/2</div>
@@ -53,6 +54,6 @@
         <div id="total_stat">Stat Point : #####</div>
         <div id="army_size">Army Size : #####</div></br>
         <button class="btn btn-default">Random</button>
-        <button class="btn btn-default">Ready</button>
+        <button class="btn btn-default" id="ready_button">Ready</button>
     </div>
 </div>

@@ -3,6 +3,7 @@
 function joinGame() 
 {
     global $CONN;
+    global $userID;
 
     $results = ["success"=>false,
                "data"=>null,
@@ -10,43 +11,49 @@ function joinGame()
 
 //    if (isset($_POST)){
         // grab first open game
-        $sql = "SELECT * FROM game WHERE status = 0 LIMIT 1";
+    $sql = "SELECT * FROM game WHERE status = 0 LIMIT 1";
         
-        $result = mysqli_query($CONN, $sql);
+    $result = mysqli_query($CONN, $sql);
         
-        $foundGame = false;
+    $foundGame = false;
         
-        $gameRow = mysqli_fetch_assoc($result);
+    $gameRow = mysqli_fetch_assoc($result);
     
-        $gameID = $gameRow['ID'];
+    $gameID = $gameRow['ID'];
         // join game
-        if ($gameRow) {
+    if ($gameRow) {
             //game exists
             
-            if(insertPlayerInGame($gameID)){
-                $gameSql2 = "UPDATE game SET status = 1 WHERE maxPlayers = totalPlayers";
+        if(insertPlayerInGame($gameID)){
+            $gameSql2 = "UPDATE game SET status = 1 WHERE maxPlayers = totalPlayers";
             
                 // update rows in game table where maxplayers equals totalplayers
-                mysqli_query($CONN, $gameSql2);
-            }
-            
-            $results['success'] = true;
-        } else {
-            if(createGame()) {
-                joinGame();
-            } else {
-                $results['success'] = false;
-                $results['message'] = 'Unable to create game';
-            }
+            mysqli_query($CONN, $gameSql2);
         }
-       
-        return $results;
-//    }
+            
+    $results['success'] = true;
+    }else{
+        if(createGame()) {
+            return(joinGame());
+        }else{
+            $results['success'] = false;
+            $results['message'] = 'Unable to create game';
+        }
+    }
+    
+    if($results['success']){
+        $query = "SELECT gameID AS id FROM players  
+                WHERE userID='$userID'";
+        $result = mysqli_query($CONN, $query);
+        $_SESSION['gameInfo'] = mysqli_fetch_assoc($result);
+    
+    }
+    return $results;
 }
     
     function insertPlayerInGame($gameID){
         global $CONN;
-        $userID = $_SESSION['userinfo']['ID'];
+        global $userID;
         
         $r = false;
          $playerSql = "INSERT INTO players (userID, gameID) VALUES ('$userID', '$gameID')";
@@ -66,7 +73,15 @@ function joinGame()
     
     function createGame(){
         global $CONN;
-//        $createSql = "INSERT INTO game (created, author) VALUES ('$user['created']', '$user['author']')";
+
+        $time = time();
+        $author = $_SESSION['userInfo']['username'];
         
+        $newGame = "INSERT INTO game  (created, author) VALUES ('$time', '$author')";
+        mysqli_query($CONN, $newGame);
+        if(mysqli_affected_rows($CONN)){
+            return true;
+        }
+        return false;
     }
 ?>
