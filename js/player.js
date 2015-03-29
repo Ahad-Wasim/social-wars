@@ -49,7 +49,7 @@ function createPlayer(str) {
         var passInfo = {
             'url': createPhotoObject(flickrResponse.photos.photo),
             'totalPhotoCount': parseFloat(flickrResponse.photos.total),
-            'totalPages': parseFloat(flickrResponse.photos.pages),
+            'totalPageCount': parseFloat(flickrResponse.photos.pages),
         }
 
         var player = new Player(passInfo);
