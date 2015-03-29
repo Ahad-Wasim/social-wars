@@ -41,7 +41,7 @@
 }
 
 body {
-    background-image: url(images/tron_background.jpg.jpg);
+    background-image: url(images/tron_background.jpg); /**  Updated background image (removed watermark) **/
     background-size: contain;
     color: #ffffff;
     font-family: monospace;

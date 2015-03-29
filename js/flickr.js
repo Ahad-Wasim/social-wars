@@ -13,6 +13,7 @@ var base_flickr_url = server+services+api_key+format+nojsoncallback;
 
 var photoArray = [];
 var totalPhotos = null;
+var totalPages = null;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -25,6 +26,7 @@ var createPhotoObject = function (photoArray) {
     var url = 'https://farm' + selectedPhoto.farm + '.staticflickr.com/' + selectedPhoto.server + '/' + selectedPhoto.id + '_' + selectedPhoto.secret + '_m.jpg'
     photoObject.url = url;  
     photoObject.totalPhotoCount = totalPhotos;
+    photoObject.totalPagesCount = totalPages;
     return photoObject;
 }
 

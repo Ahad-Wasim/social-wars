@@ -20,7 +20,7 @@
                     <label for="health"> Health: </label>
                 </div>
                 <div class="col-xs-7 align-left">
-                    <input type="text" name="health" id="health_input"> </br>
+                    <input type="text" name="health" id="health_input" value="00"> </br>
                 </div>
             </div>
             <div class="row">
@@ -28,7 +28,7 @@
                     <label for="status"> Speed: </label>
                 </div>
                 <div class="col-xs-7 align-left">
-                    <input type="text" name="speed" id="speed_input">
+                    <input type="text" name="speed" id="speed_input" value="00">
                 </div>
             </div>
             <div class="row">
@@ -36,23 +36,18 @@
                     <label for="status"> Damage: </label>
                 </div>
                 <div class="col-xs-7 align-left">
-                    <input type="text" name="damage" id="damage_input"> </br>
+                    <input type="text" name="damage" id="damage_input" value="00"> </br>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-5 align-right">
-                    <label for="status"> Army Size: </label>
-                </div>
-                <div class="col-xs-7 align-left">
-                    <input type="text" name="army" id="army_input"> </br>
-                </div>
-            </div>
+            
         </div>
     </div>
     <div class="bottom_container">
-        <div id="total_stat">Stat Point : #####</div>
-        <div id="army_size">Army Size : #####</div></br>
-        <button class="btn btn-default">Random</button>
+        <label for="total_stat">Stat Point: </label>
+        <div id="total_stat">#####</div>
+        <label for="army_size">Army Size: </label>
+        <div id="army_size">#####</div></br>
+        <button class="btn btn-default" id="randomBtn">Random</button>
         <button class="btn btn-default">Ready</button>
     </div>
 </div>
