@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-require_once('conn.php');
+require_once('../includes/db_link.php');
 
 $output = [];
 $errors = [];

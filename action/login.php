@@ -2,7 +2,7 @@
 session_start();
 
 include('../includes/db_link.php');
-include('../actions/joinGame.php');
+include('joinGame.php');
 
 
     $success = [];
@@ -17,19 +17,26 @@ include('../actions/joinGame.php');
         if(mysqli_num_rows($results)) {
             
             $userinfo = mysqli_fetch_array($results);
-            $_SESSION['userinfo'] = $userinfo;
-            $ID  = $_SESSION['userinfo']['ID'];
-            $sql = "UPDATE `users` SET `status`=1 WHERE ID='$ID'";
+            $_SESSION['userInfo'] = $userinfo;
+            $userID  = $_SESSION['userInfo']['ID'];
+            $sql = "UPDATE `users` SET `status`=1 WHERE ID='$userID'";
             mysqli_query($CONN, $sql);
             
             
             //header('Location: ../index.php');
             // join game or create game if game full
-            joinGame(); 
+            $join_results = joinGame(); 
 
-            
-            $success['loggedIn'] = true;
-            $success['message'] = 'User has successfully logged in';
+            if($join_results['success'])
+            {
+                $success['loggedIn'] = true;
+                $success['message'] = 'User has successfully logged in';
+            }
+            else
+            {
+                $success['loggedIn'] = false;
+                $success['message'] = 'Create / join game failed. 1: echo "fail"; 2: goto 1';                
+            }
         }
             //echo "<p>Login successful, status changed to 1</p><a href='logout.php'>Logout</a>";
         else {
