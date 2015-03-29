@@ -1,25 +1,12 @@
 $('document').ready(function(){
-    
-    var $submitButton = $('#word_button');
-    var $totalStat = $('#total_stat');
-    var $armySize = $('#army_size');
-    var $randomizer = $('#random_button');
-    var $readyToPlay = $('#ready_button');
-    
-    $submitButton.click(function(e){
-        var searchString = $('#new_word').val();
-
-        var defer = Q.defer();
-        createPlayer(searchString).then(function() {
-            players[0].army = createArmy(players[0]);
-            send_player_to_server(players[0]);
-            $armySize.html('Your Army: ' + players[0].army);
-        });//end createPlayer
-        checkForOp();
-    });//end submit button
+    // cache jQuery objects for later use
+    var $submitButton = $('#word_button'),
+        $totalStat = $('#total_stat'),
+        $armySize = $('#army_size'),
+        $randomizer = $('#random_button'),
+        $readyToPlay = $('#ready_button');
     
     function checkForOp(){
-        
         console.log("checking for opponent");
         
         $.ajax({
@@ -36,4 +23,14 @@ $('document').ready(function(){
             }
         });
     }
-}); //end of document.ready
+
+    $submitButton.click(function(e){
+        var searchString = $('#new_word').val();
+        // execute callback function once createPlayer has finished
+        Promise.resolve(createPlayer(searchString)).then(function(player) {
+            $armySize.html('Army Size : ' + player.army);
+        });
+
+        // checkForOp();
+    });
+}); // document.ready

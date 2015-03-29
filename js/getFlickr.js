@@ -20,30 +20,26 @@ function getRandomInt(min, max) {
 }
 
 var createPhotoObject = function (photoArray) {
-    var photoObject = {};
     var randomIndex = getRandomInt(1,9);
     var selectedPhoto = photoArray[randomIndex];
-    var url = 'https://farm' + selectedPhoto.farm + '.staticflickr.com/' + selectedPhoto.server + '/' + selectedPhoto.id + '_' + selectedPhoto.secret + '_m.jpg'
-    photoObject.url = url;  
-    photoObject.totalPhotoCount = totalPhotos;
-    photoObject.totalPageCount = totalPages;
-    return photoObject;
+    var url = 'https://farm' + selectedPhoto.farm + '.staticflickr.com/' + selectedPhoto.server + '/' + selectedPhoto.id + '_' + selectedPhoto.secret + '_m.jpg';
+
+    return url;
 }
 
 function getFlickr (str){ 
-	var defer = Q.defer();
-    //var randomPerPage = ;
 	// parameter inside function will be a battleInput
     var battleInput = str; //this will change to input reconstruct
     //make a variable, search_method_parameter, that stores which method we are going to use for searching.  The key should be 'method', and the value should be the 'flickr.photos.search'.  Make sure to put a & before the key
-    var search_method_parameter = "&method=flickr.photos.search"
+        search_method_parameter = "&method=flickr.photos.search",
     //make a variable, search_text_parameter, that defines what text we are going to use in our search.  The key will be text, and the value will be the search_val variable we defined above.  Make sure to put a & before the key
-    var search_text_parameter = "&text="+battleInput;
+        search_text_parameter = "&text="+battleInput,
     //narrow down the search of the 
-    var pages = "&per_page=" + getRandomInt(9, 300);
+        pages = "&per_page=" + getRandomInt(9, 300),
     //define a variable, search_url, that concatanates the base_flickr_url variable, the search_method_parameter variable, and the search_text_parameter variable
-    var search_url = base_flickr_url+search_method_parameter+search_text_parameter+pages;
-   	$.ajax({
+        search_url = base_flickr_url+search_method_parameter+search_text_parameter+pages;
+
+   	return $.ajax({
         //set the url key to your search_url variable
         url: search_url,
         //We expect json back from the ajax call, tell ajax to expect it
@@ -52,27 +48,12 @@ function getFlickr (str){
         crossDomain: true,
         //define our success handler
         success: function(response){
-            totalPhotos = response.photos.total;
-            totalPages = response.photos.pages;
-
-            console.log('success', response);
-			//set our photos variable to the appropriate information from the json. 
-			photoArray = response.photos.photo;
-			//fire function to select random photo
-			console.log(createPhotoObject(photoArray));
-
-			defer.resolve(createPhotoObject(photoArray))
+            console.log('getFlickr success');
         },  //end our success handler
         //define our error handler.  Put the received data into the "response" variable.  
         error: function(response){
-            //console log out the response variable, and indicate we had an error
-            console.error("Error, something went wrong with the photo avatar");
-            defer.reject({
-            	message: 'there has been an error'
-            });
-
-        }//end our error handler
+            console.Error('getFlickr error');
+        }
     });
 
-    return defer.promise;
 }
