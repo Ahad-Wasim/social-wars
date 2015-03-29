@@ -3,7 +3,9 @@ function createArmy(obj) {
 }
 
 function getTotalStats(me, opponent){
-    var avg = (me[army] + opponent[army]) / 2;
+    console.log("me:",me.army);
+    console.log("opponent",opponent.army);
+    var avg = Math.floor((me.army + opponent.army) / 2);
     
     //var avg = (me+opponent)/2;
     

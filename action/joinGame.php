@@ -34,7 +34,7 @@ function joinGame()
     $results['success'] = true;
     }else{
         if(createGame()) {
-            joinGame();
+            return(joinGame());
         }else{
             $results['success'] = false;
             $results['message'] = 'Unable to create game';
@@ -42,10 +42,11 @@ function joinGame()
     }
     
     if($results['success']){
-        $query = "SELECT * FROM game WHERE userID='$userID'";
-        
-        mysqli_query($CONN, $query);
-        $_SESSION
+        $query = "SELECT gameID AS id FROM players  
+                WHERE userID='$userID'";
+        $result = mysqli_query($CONN, $query);
+        $_SESSION['gameInfo'] = mysqli_fetch_assoc($result);
+    
     }
     return $results;
 }
