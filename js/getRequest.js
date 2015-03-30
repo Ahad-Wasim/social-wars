@@ -23,8 +23,8 @@ function getTwitter(string) {
         data: searchObj,
         cache: false,
         success: function(response) {
-            console.log(string);
-            console.log(response);
+            //console.log(string);
+            //console.log(response);
 
             defer.resolve(response);
         },

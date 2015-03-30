@@ -1,3 +1,5 @@
+var totalStats = 0;
+
 $('document').ready(function(){
     
     var $submitButton = $('#word_button');
@@ -80,8 +82,8 @@ $('document').ready(function(){
     
     function getStatPoints(){
         
-        var stats = getTotalStats(players[0], players[1]);
-        $totalStat.text(stats);
+        totalStats = getTotalStats(players[0], players[1]);
+        $totalStat.text("Stat Points Remaining: " + totalStats);
         
     } //end getStatPoints
 }); //end of document.ready

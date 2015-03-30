@@ -40,19 +40,19 @@
                     <input type="text" name="damage" id="damage_input"> </br>
                 </div>
             </div>
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-xs-5 align-right">
                     <label for="status"> Army Size: </label>
                 </div>
                 <div class="col-xs-7 align-left">
                     <input type="text" name="army" id="army_input"> </br>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
     <div class="bottom_container">
-        <div id="total_stat">Stat Point : #####</div>
-        <div id="army_size">Army Size : #####</div></br>
+        <div id="total_stat">Stat Points Remaining: #####</div>
+        <div id="army_size">Your Army: #####</div></br>
         <button class="btn btn-default">Random</button>
         <button class="btn btn-default" id="ready_button">Ready</button>
     </div>

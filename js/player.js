@@ -11,7 +11,7 @@ function Player(obj) {
     self.playerID = playerID++;
     console.log(obj);
     for (var key in obj) {
-        console.log(key);
+        //console.log(key);
         self[key] = obj[key];
     }   
 }
@@ -25,7 +25,7 @@ Player.prototype.get = function(prop) {
 }
 function send_player_to_server(player)
 {
-    console.log("send army to server called", player.army);
+    console.log("send player to server called", player.army);
     var data  = {player: player};
     $.ajax({
         url: 'action/updatePlayer.php',
@@ -34,7 +34,7 @@ function send_player_to_server(player)
         dataType: 'json',
         method: 'post',
         success: function(response){
-            console.log(response);
+            console.log("Player sent to server: ", response);
         }
     })
 }
@@ -47,17 +47,17 @@ function createPlayer(str) {
                 for (var key in resp1) {
                     resp2[key] = resp1[key];
                 }
-                console.log("Create player resonse: " + resp2);
+                //console.log("Create player resonse: " + resp2);
                 players.push( new Player(resp2) );   // create the object when both of the top stuff are loaded
                 defer.resolve(players);
                 //push data to php file
                 //send_army_to_server();
             }).catch(function(response) {
-                console.error(response);
+                console.error("Error in create player: ",response);
                 defer.reject(response);
             })
         }).catch(function(response) {
-            console.error(response);
+            console.error("Error in create player: ",response);
             defer.reject(response);
         });
         // });
