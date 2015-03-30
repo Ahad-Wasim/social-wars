@@ -1,4 +1,5 @@
 var statValue = document.querySelector("#total_stat").innerHTML;
+
 var sum = 0;
 
 function getRandomInt(min, max) {
@@ -18,92 +19,96 @@ $(document).ready(function(){
     var healthInput = $("#health_input");
     var speedInput = $("#speed_input");
     var damageInput = $("#damage_input");
+    var $randomBtn = $("#randomBtn");
 
-    if (statValue!=NaN) {
-        var i = getRandomInt(1,100);
-        //console.log("i", i);
-        numbArray.push(i);
-        var q = 100 - i;
-        //console.log("q", q);
-        numbArray.push(100 - i);
-        //console.log(numbArray);
-        
-        if (numbArray[0] > numbArray[1])
-        {
-            var split = numbArray[0];
-            var firstIndexSplit = Math.floor((getRandomInt(1, 100)/100)*numbArray[0]);
-            var otherPortion = (split - firstIndexSplit);
-            //console.log("First Index 1 part: ",firstIndexSplit);
-            //console.log("First Index 2nd part: ",otherPortion);
-            numbArray.splice(0,1, firstIndexSplit);
-            numbArray.push(otherPortion);
-            //console.log("final array", numbArray);
-        }
-        else 
-        {
-            var splish = numbArray[1];
-            var secondIndexSplit = Math.floor((getRandomInt(1, 100)/100)*numbArray[1]);
-            var otherPortioni = (splish - secondIndexSplit);
-            //console.log("Second Index 1 part: ",secondIndexSplit);
-            //console.log("Second Index 2nd part: ",otherPortioni);
-            numbArray.splice(1,1, secondIndexSplit);
-            numbArray.push(otherPortioni);
-            //console.log("final array", numbArray);
-        }
-        shuffle(numbArray);
-        //console.log("Shuffled", numbArray);
-        var total = 0;
+    $randomBtn.prop('disabled',true);
 
-        for(var j=0; j<numbArray.length; j++) {
-            var increment = 0;
+    $randomBtn.click(function(){
+        if (statValue!=NaN) {
+            var i = getRandomInt(1,100);
+            //console.log("i", i);
+            numbArray.push(i);
+            var q = 100 - i;
+            //console.log("q", q);
+            numbArray.push(100 - i);
+            //console.log(numbArray);
             
-            numbArray[j] = (Math.floor (numbArray[j]/10))*10;
-
-            if(numbArray[j]===0) 
+            if (numbArray[0] > numbArray[1])
             {
-                increment++;
+                var split = numbArray[0];
+                var firstIndexSplit = Math.floor((getRandomInt(1, 100)/100)*numbArray[0]);
+                var otherPortion = (split - firstIndexSplit);
+                //console.log("First Index 1 part: ",firstIndexSplit);
+                //console.log("First Index 2nd part: ",otherPortion);
+                numbArray.splice(0,1, firstIndexSplit);
+                numbArray.push(otherPortion);
+                //console.log("final array", numbArray);
+            }
+            else 
+            {
+                var splish = numbArray[1];
+                var secondIndexSplit = Math.floor((getRandomInt(1, 100)/100)*numbArray[1]);
+                var otherPortioni = (splish - secondIndexSplit);
+                //console.log("Second Index 1 part: ",secondIndexSplit);
+                //console.log("Second Index 2nd part: ",otherPortioni);
+                numbArray.splice(1,1, secondIndexSplit);
+                numbArray.push(otherPortioni);
+                //console.log("final array", numbArray);
+            }
+            shuffle(numbArray);
+            //console.log("Shuffled", numbArray);
+            var total = 0;
+
+            for(var j=0; j<numbArray.length; j++) {
+                var increment = 0;
+                
+                numbArray[j] = (Math.floor (numbArray[j]/10))*10;
+
+                if(numbArray[j]===0) 
+                {
+                    increment++;
+                }
+                
+                if(j==2 && increment==2) 
+                {
+                    numbArray[j]+=20;
+                } else if(j==2)
+                {
+                    numbArray[j]+=10;
+                } 
+                //console.log("each number is: ", numbArray[j]);
+                
+
+                total+=numbArray[j];
+                //console.log("the total equals", total);
+
+                if (j==2 && total == 90) 
+                {
+                    numbArray[j]+=10;
+                } else if (j==2 && total == 110) 
+                {
+                    numbArray[j]-=10;
+                }
+                finalArray.push(numbArray[j]);
+
             }
             
-            if(j==2 && increment==2) 
+            //console.log("FinalArray without statTotal", finalArray);
+            for (var l = 0; l < finalArray.length; l++) 
             {
-                numbArray[j]+=20;
-            } else if(j==2)
-            {
-                numbArray[j]+=10;
-            } 
-            //console.log("each number is: ", numbArray[j]);
-            
+                var asPercent = finalArray[l]/100;
+                var finalStatValue = asPercent * statValue;
+                finalArray[l] = finalStatValue;
 
-            total+=numbArray[j];
-            //console.log("the total equals", total);
-
-            if (j==2 && total == 90) 
-            {
-                numbArray[j]+=10;
-            } else if (j==2 && total == 110) 
-            {
-                numbArray[j]-=10;
             }
-            finalArray.push(numbArray[j]);
-
+            //console.log("Distribution of random statPointValue", finalArray);
+        } 
+        else {
+            console.log("Error");
         }
-        
-        //console.log("FinalArray without statTotal", finalArray);
-        for (var l = 0; l < finalArray.length; l++) 
-        {
-            var asPercent = finalArray[l]/100;
-            var finalStatValue = asPercent * statValue;
-            finalArray[l] = finalStatValue;
-
-        }
-        //console.log("Distribution of random statPointValue", finalArray);
-    } 
-    else {
-        console.log("Error");
-    }
+        $randomBtn.prop('disabled',false);
+    });
     healthInput.attr("value", finalArray[0]);
     speedInput.attr("value", finalArray[1]);
-    damageInput.attr("value", finalArray[2]);
-    
-    
+    damageInput.attr("value", finalArray[2]);  
 });
