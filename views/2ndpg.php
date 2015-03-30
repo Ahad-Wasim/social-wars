@@ -49,6 +49,6 @@
         <label for="army_size">Army Size: </label>
         <div id="army_size">#####</div></br>
         <button class="btn btn-default" id="randomBtn">Random</button>
-        <button class="btn btn-default">Ready</button>
+        <button class="btn btn-default" id="ready_button">Ready</button>
     </div>
 </div>

@@ -1,4 +1,4 @@
-var statDummyValue = 30; //document.querySelector("#total_stat").innerHTML
+var statValue = document.querySelector("#total_stat").innerHTML;
 var sum = 0;
 
 function getRandomInt(min, max) {
@@ -19,7 +19,7 @@ $(document).ready(function(){
     var speedInput = $("#speed_input");
     var damageInput = $("#damage_input");
 
-    if (statDummyValue!=NaN) {
+    if (statValue!=NaN) {
         var i = getRandomInt(1,100);
         //console.log("i", i);
         numbArray.push(i);
@@ -80,7 +80,7 @@ $(document).ready(function(){
             if (j==2 && total == 90) 
             {
                 numbArray[j]+=10;
-            } else if (j==2 && total == 90) 
+            } else if (j==2 && total == 110) 
             {
                 numbArray[j]-=10;
             }
@@ -91,9 +91,9 @@ $(document).ready(function(){
         //console.log("FinalArray without statTotal", finalArray);
         for (var l = 0; l < finalArray.length; l++) 
         {
-            var logTHis = finalArray[l]/100;
-            var newii = logTHis * statDummyValue;
-            finalArray[l] = newii;
+            var asPercent = finalArray[l]/100;
+            var finalStatValue = asPercent * statValue;
+            finalArray[l] = finalStatValue;
 
         }
         //console.log("Distribution of random statPointValue", finalArray);
