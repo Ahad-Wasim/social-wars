@@ -53,7 +53,7 @@
     <div class="bottom_container">
         <div id="total_stat">Stat Points Remaining: #####</div>
         <div id="army_size">Your Army: #####</div></br>
-        <button class="btn btn-default">Random</button>
+        <button class="btn btn-default" id="random_button">Random</button>
         <button class="btn btn-default" id="ready_button">Ready</button>
     </div>
 </div>

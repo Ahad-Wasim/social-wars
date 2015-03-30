@@ -2,12 +2,15 @@
 session_start();
 require_once('../includes/db_link.php');
 
-$army = addslashes(json_encode($_POST['player']));
+//$player = addslashes(json_encode($_POST['player']));
+$player = $_POST;
 $user = $_SESSION['userInfo']['ID'];
 $game = $_SESSION['gameInfo']['id'];
 $output['success'] = false;
 
-$query = "UPDATE players SET playerObj='$army' WHERE userID='$user' AND gameID='$game'";
+print_r($player['player']['army']);
+
+//$query = "UPDATE players SET playerObj='$player' WHERE userID='$user' AND gameID='$game'";
 print("query = $query");
 
 mysqli_query($CONN, $query);

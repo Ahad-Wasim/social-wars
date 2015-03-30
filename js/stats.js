@@ -6,13 +6,13 @@ $('document').ready(function(){
     var $loginBtn = $('#login_button');
     var $totalStat = $('#total_stat');
     var $armySize = $('#army_size');
-    var $randomizer = $('#random_button');
+    //var $randomizer = $('#random_button');
     var $readyToPlay = $('#ready_button');
     
     
     $loginBtn.click(function(){
         
-        var data = {username: 'test2', password: 'lol'};
+        var data = {username: 'test1', password: 'lol'};
         
         $.ajax({
             url: 'action/login.php',
@@ -41,6 +41,8 @@ $('document').ready(function(){
     });//end submit button
     
     $readyToPlay.click(function(){
+        
+        
         
         $.ajax({
             url: 'action/gameReady.php',
@@ -84,6 +86,7 @@ $('document').ready(function(){
         
         totalStats = getTotalStats(players[0], players[1]);
         $totalStat.text("Stat Points Remaining: " + totalStats);
+        $('#random_button').attr('disabled', false);
         
     } //end getStatPoints
 }); //end of document.ready

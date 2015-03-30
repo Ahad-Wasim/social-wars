@@ -5,9 +5,11 @@ function Player(obj) {
     var self = this;
      // every player is going to be a new player
     self.health = '';                                          // health these are the properties of the class
-    self.strength = '';                                        // speed etc.
-    self.speed = '';              
+    self.attack = '';                                        // speed etc.
+    //self.speed = '';              
     self.army = '';
+    self.position = '';
+    self.userID = '';
     self.playerID = playerID++;
     console.log(obj);
     for (var key in obj) {

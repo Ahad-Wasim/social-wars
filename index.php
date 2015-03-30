@@ -13,6 +13,7 @@
 <script src="js/player.js"></script>
 <script src="js/stats.js"></script>
 <script src="js/stat_distribute.js"></script>
+<script src="js/randomStats.js"></script>
     
 <!-- Twitter API -->
 

@@ -27,6 +27,8 @@ function joinGame()
         if(insertPlayerInGame($gameID)){
             $gameSql2 = "UPDATE game SET status = 1 WHERE maxPlayers = totalPlayers";
             
+            $_SESSION['gameInfo']['position'] = $gameRow['totalPlayers'] + 1;
+            $_SESSION['gameInfo']['id'] = $gameID;
                 // update rows in game table where maxplayers equals totalplayers
             mysqli_query($CONN, $gameSql2);
         }
@@ -42,10 +44,10 @@ function joinGame()
     }
     
     if($results['success']){
-        $query = "SELECT gameID AS id FROM players  
-                WHERE userID='$userID'";
-        $result = mysqli_query($CONN, $query);
-        $_SESSION['gameInfo'] = mysqli_fetch_assoc($result);
+//        $query = "SELECT gameID AS id FROM players  
+//                WHERE userID='$userID'";
+//        $result = mysqli_query($CONN, $query);
+//        $_SESSION['gameInfo'] = mysqli_fetch_assoc($result);
     
     }
     return $results;

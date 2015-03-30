@@ -31,6 +31,7 @@ include('joinGame.php');
             {
                 $success['loggedIn'] = true;
                 $success['message'] = 'User has successfully logged in';
+                $success['join'] = $join_results;
             }
             else
             {
