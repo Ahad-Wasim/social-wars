@@ -8,6 +8,7 @@ function Player(obj) {
     self.attack = '';                                        // speed etc.
     //self.speed = '';              
     self.army = '';
+    self.speed = '';
     self.position = '';
     self.userID = '';
     self.playerID = playerID++;
@@ -27,7 +28,7 @@ Player.prototype.get = function(prop) {
 }
 function send_player_to_server(player)
 {
-    console.log("send player to server called", player.army);
+    console.log("send player to server called", player);
     var data  = {player: player};
     $.ajax({
         url: 'action/updatePlayer.php',
@@ -36,7 +37,9 @@ function send_player_to_server(player)
         dataType: 'json',
         method: 'post',
         success: function(response){
-            console.log("Player sent to server: ", response);
+            player.position = response.player.position;
+            player.userID = response.player.userID;
+            //console.log("Player updated: ", player);
         }
     })
 }

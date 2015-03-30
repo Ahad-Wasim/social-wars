@@ -41,6 +41,9 @@ $(document).ready(function()
         $totalStat.text("Stat Points Remaining: " + remaining_stats);
         if($stat_total == totalStats){
             $ready_button.prop('disabled',false);
+            players[0].health = parseInt($health_input.val());
+            players[0].speed = parseInt($speed_input.val());
+            players[0].attack = parseInt($damage_input.val());
         }
     }
     

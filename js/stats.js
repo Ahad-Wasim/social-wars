@@ -42,7 +42,26 @@ $('document').ready(function(){
     
     $readyToPlay.click(function(){
         
-        
+        $.ajax({
+            url: 'action/playerReady.php',
+            method: 'post',
+            data: players[0],
+            dataType: 'json',
+            cache: false,
+            success: function(data){
+                if(data.success){
+                    console.log("ready suc:", data.player);
+                    players[0] = data.player;
+                    gameReady();
+                }else{
+                    console.log("ready fail:", data);
+                }
+            }
+        })
+    });
+    
+    function gameReady(){
+        console.log("gameReady called");
         
         $.ajax({
             url: 'action/gameReady.php',
@@ -50,12 +69,11 @@ $('document').ready(function(){
             dataType: 'json',
             cache: false,
             success: function(data){
-                if(data.success){
-                    
-                }
+                console.log("Game ready:", data);
             }
-        })
-    });
+        });
+    }
+
     
     function checkForOp(){
         
@@ -68,15 +86,13 @@ $('document').ready(function(){
             cache: false,
             success: function(data){
                 if(data.success){
-                    //console.log("Check for Op: " , data);
-                    console.log("players before ",players);
                     players.push(data.player.playerObj);
                     console.log("players after ",players);
                     //console.log("data.player.playerObj",data.player.playerObj);
                     getStatPoints();
                 }else{
                     console.log("Check for Op Fail: " + data);
-                    //setTimeout(checkForOp, 2000);
+                    setTimeout(checkForOp, 2000);
                 }
             }
         });//end ajax
@@ -90,3 +106,17 @@ $('document').ready(function(){
         
     } //end getStatPoints
 }); //end of document.ready
+
+    
+    function startGame(){
+        
+        $.ajax({
+            url: 'action/startGame.php',
+            method: 'post',
+            dataType: 'json',
+            cache: false,
+            success: function(data){
+                console.log("game outcome:", data);
+            }
+        });
+    }

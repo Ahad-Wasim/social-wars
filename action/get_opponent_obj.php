@@ -18,7 +18,7 @@ $user_id = $_SESSION['userInfo']['ID'];
 $query = "SELECT p.userID, p.playerObj, p.position, u.username 
             FROM players AS p 
             JOIN users AS u ON p.userID = u.ID
-            WHERE p.gameID=$game_id AND p.userID<>$user_id";
+            WHERE p.gameID=$game_id AND p.userID<>$user_id AND p.playerObj<>'NULL'";
 //print $query;
 $result = mysqli_query($CONN, $query);
 $players = mysqli_num_rows($result);

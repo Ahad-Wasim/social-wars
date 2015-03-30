@@ -20,14 +20,15 @@ function joinGame()
     $gameRow = mysqli_fetch_assoc($result);
     
     $gameID = $gameRow['ID'];
+    $position = $gameRow['totalPlayers'] + 1;
         // join game
     if ($gameRow) {
             //game exists
             
-        if(insertPlayerInGame($gameID)){
+        if(insertPlayerInGame($gameID, $position)){
             $gameSql2 = "UPDATE game SET status = 1 WHERE maxPlayers = totalPlayers";
             
-            $_SESSION['gameInfo']['position'] = $gameRow['totalPlayers'] + 1;
+            $_SESSION['gameInfo']['position'] = $position;
             $_SESSION['gameInfo']['id'] = $gameID;
                 // update rows in game table where maxplayers equals totalplayers
             mysqli_query($CONN, $gameSql2);
@@ -53,12 +54,12 @@ function joinGame()
     return $results;
 }
     
-    function insertPlayerInGame($gameID){
+    function insertPlayerInGame($gameID, $position){
         global $CONN;
         global $userID;
         
         $r = false;
-         $playerSql = "INSERT INTO players (userID, gameID) VALUES ('$userID', '$gameID')";
+         $playerSql = "INSERT INTO players (userID, gameID, position) VALUES ('$userID', '$gameID', '$position')";
          $results = mysqli_query($CONN, $playerSql);
         
          if(mysqli_affected_rows($CONN) > 0){

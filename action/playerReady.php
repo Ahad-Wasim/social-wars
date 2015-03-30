@@ -2,31 +2,44 @@
 session_start();
 require_once('../includes/db_link.php');
 
-$userID = 8;//$_SESSION['userInfo']['ID'];
-$health = $_POST['health'];
-$speed = $_POST['speed'];
-$attack = $_POST['attack'];
-$army = $_POST['army'];
+$output['success'] = false;
+$userID = $_SESSION['userInfo']['ID'];
+$gameID = $_SESSION['gameInfo']['id'];
+$player = $_POST;
 
-$totalHealth = totalHealth($health, $army);
-$totalDPS($attack, $speed);
+$player['attack'] = totalDPS($player['attack'], $player['speed'], $player['health']);
+$player['health'] = totalHealth($player['health'], $player['army']);
 
-$query = "INSERT INTO players (health, attack, army) VALUES ('$health', '$attack', '$army') WHERE userID='$userID'";
+$playerToDB = addslashes(json_encode($player));
+
+$query = "UPDATE players SET playerObj='$playerToDB' WHERE userID='$userID' AND gameID='$gameID'";
 $todos = mysqli_query($CONN, $query);
 
 if(mysqli_affected_rows($CONN)){
-    $output['success'] = true;
+    
+    $query = "UPDATE game SET playerReady=(playerReady + 1) WHERE ID='$gameID'";
+    mysqli_query($CONN, $query);
+    if(mysqli_affected_rows($CONN)){
+        $output['success'] = true;
+        $output['player'] = $player;
+    }else{
+        $output['msgs'] = "Failed to update game db";
+    }
 }else{
-    $output['success'] = false;
+    $output['msgs'] = "Failed to update player db";
 }
 
 echo json_encode($output);
 
 function totalHealth($health, $army){
-    return $army * $health;
+    if($health < 2){
+        $health = 2;
+    }
+    
+    return floor(($army * $health)/2);
 }
 
-function totalDPS($attack, $speed){
-    return $attack * $speed;
+function totalDPS($attack, $speed, $health){
+    return $attack * $speed * $attack;
 }
 ?>

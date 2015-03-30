@@ -9,17 +9,17 @@ $ready = false;
 $success = false;
 
 
-$pID = $_SESSION['userInfo']['id'];   //Player id
-$oID = $_SESSION['opponentInfo']['id']; //Opponent id                     
+$pID = $_SESSION['userInfo']['ID'];   //Player id
+$oID = $_SESSION['opponentInfo']['userID']; //Opponent id                     
 
 $gameID = $_SESSION['gameInfo']['id'];  //game id
-$query = "SELECT totalPlayers, playersReady FROM game WHERE id='$gameID";
+$query = "SELECT totalPlayers, playerReady FROM game WHERE id='$gameID'";
 $result = mysqli_query($CONN, $query);
 
 if(mysqli_num_rows($result) === 1){
     $row = mysqli_fetch_assoc($result);
     
-    if($row[totalPlayers] === $row[playersReady]){
+    if($row['totalPlayers'] === $row['playerReady']){
         $ready = true;
     }else{
         $errors[] = "Waiting on players";
@@ -35,13 +35,13 @@ if($ready){
     
     if(mysqli_num_rows($result) > 1){
         while($row = mysqli_fetch_assoc($result)){
-            if($row['playerID'] === $pID){
-                $_SESSION['playerStats'] = $row;
-            }elseif($row['playerID'] === $oID){
-                $_SESSION['opponentStats'] = $row;
+            if($row['userID'] === $pID){
+                $_SESSION['playerStats'] = $row['playerObj'];
+            }elseif($row['userID'] === $oID){
+                $_SESSION['opponentStats'] = $row['playerObj'];
             }
         }
-        if(!isset($_SESSION['playerStats'] || !isset($_SESSION['opponentStats']))){
+        if(!isset($_SESSION['playerStats']) || !isset($_SESSION['opponentStats'])){
             $errors[] = "Error finding both players";
         }
     }else{
@@ -50,23 +50,24 @@ if($ready){
     }
     
     if($errors === []){
-        $player = $_SESSION['playerStats'];
-        $opponent = $_SESSION['opponentStats'];
+        $player = (array) json_decode($_SESSION['playerStats']);
+        $opponent = (array) json_decode($_SESSION['opponentStats']);
+        print_r($player['health']);
         
         $count = 0;
-        while($player['health'] > 0 && $opponent['health'] > 0){
-            $battleInfo['player']['diceRoll'] = rand(5, 15);
-            $battleInfo['opponent']['diceRoll'] = rand(5, 15);
+        while($count < 100){ //$player['health'] > 0 && $opponent['health'] > 0
+            $battleInfo['pdice'] = rand(5, 15);
+            $battleInfo['odice'] = rand(5, 15);
             
-            if($battleInfo['player']['diceRoll'] > $battleInfo['opponent']['diceRoll']){
-                $battleInfo['damage'] = battle($player, $opponent);
-                $battleInfo['winner'] = $player['playerID'];   
+            if($battleInfo['pdice'] > $battleInfo['odice']){
+                $battleInfo['odamage'] = battle($player, $opponent, $battleInfo['pdice']);
+                $battleInfo['winner'] = $player['userID'];   
             }else{
-                $battleInfo['damage'] = battle($opponent, $player);
-                $battleInfo['winner'] = $player['opponent']; 
+                $battleInfo['pdamage'] = battle($opponent, $player, $battleInfo['odice']);
+                $battleInfo['winner'] = $opponent['userID']; 
             }
-            $battleInfo['player'] = $player;
-            $battleInfo['opponent'] = $opponent;
+            $battleInfo['phealth'] = $player['health'];
+            $battleInfo['ohealth'] = $opponent['health'];
             
             $output['results'][$count] = $battleInfo;
             $count++;
@@ -79,10 +80,12 @@ if($ready){
     
 }
 
-function battle($attacker, $defender){
-    $attack = $attacker['attack'] * $dice;
+echo json_encode($output);
+
+function battle($attacker, $defender, $dice){
+    $attack = $attacker['attack'] * $dice * 10;
     
-    $defender['health'] -= $attack;
+    $defender['health'] = $defender['health'] - $attack;
     
     return $attack;
 }
