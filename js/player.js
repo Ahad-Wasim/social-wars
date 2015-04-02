@@ -39,7 +39,7 @@ function send_player_to_server(player)
         success: function(response){
             player.position = response.player.position;
             player.userID = response.player.userID;
-            //console.log("Player updated: ", player);
+            console.log("Player updated: ", player);
         }
     })
 }

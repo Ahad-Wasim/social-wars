@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if(isset($_SESSION)){
+    session_unset();
+}
 
 include('../includes/db_link.php');
 include('joinGame.php');

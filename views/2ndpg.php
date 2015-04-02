@@ -21,7 +21,7 @@
                     <label for="health"> Health: </label>
                 </div>
                 <div class="col-xs-7 align-left">
-                    <input type="text" name="health" id="health_input"> </br>
+                    <input type="text" name="health" id="health_input"> <br>
                 </div>
             </div>
             <div class="row">
@@ -37,7 +37,7 @@
                     <label for="status"> Damage: </label>
                 </div>
                 <div class="col-xs-7 align-left">
-                    <input type="text" name="damage" id="damage_input"> </br>
+                    <input type="text" name="damage" id="damage_input"> <br>
                 </div>
             </div>
             <!--<div class="row">
@@ -46,13 +46,13 @@
                 </div>
                 <div class="col-xs-7 align-left">
                     <input type="text" name="army" id="army_input"> </br>
-                </div>-->
-            </div>
+                </div>
+            </div>-->
         </div>
     </div>
     <div class="bottom_container">
         <div id="total_stat">Stat Points Remaining: #####</div>
-        <div id="army_size">Your Army: #####</div></br>
+        <div id="army_size">Your Army: #####</div><br>
         <button class="btn btn-default" id="random_button">Random</button>
         <button class="btn btn-default" id="ready_button">Ready</button>
     </div>

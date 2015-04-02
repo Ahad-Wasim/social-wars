@@ -34,5 +34,5 @@ function getTotalStats(me, opponent){
         console.log("You got bonus points + " + extra);
     }
     
-    return stat;
+    return stat + 10;
 }
